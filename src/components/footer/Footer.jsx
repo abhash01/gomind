@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
-import footerLogo from "../../images/footerlogo.png";
+import footerLogo from "../../images/footerlogo.png"; // committ
 
 const Footer = () => {
   return (
