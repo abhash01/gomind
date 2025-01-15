@@ -3,7 +3,7 @@ import footerLogo from "../../images/footerlogo.png"; // committ
 
 const Footer = () => {
   return (
-    <Box bgcolor="rgba(99, 43, 144, 1)" py={4} mt="auto">
+    <Box bgcolor="rgba(99, 43, 144, 1)" py={4} mt="auto" color="#fff">
       <Container>
         <Box
           sx={{

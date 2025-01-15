@@ -24,7 +24,7 @@ const RegistrationBanner = () => {
         display: "flex",
         alignItems: "center", // Vertically centers the items
         justifyContent: "center", // Horizontally centers the items
-        padding: "20px",
+        padding: "20px 0",
       }}
     >
       <Container>

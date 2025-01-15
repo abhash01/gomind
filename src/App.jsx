@@ -1,28 +1,24 @@
 import React from "react";
-import { Button, Container, Typography } from "@mui/material";
-import Header from "../src/components/header/Header";
-import HeroSection from "../src/components/heroSection/HeroSection";
-import AboutUs from "./components/aboutUs/AboutUs";
-import PopularCourses from "./components/popularCourses/PopularCourses";
-import RegistrationBanner from "./components/registrationBanner/RegistrationBanner";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/header/Header";
+import Home from "../src/components/home/Home";
 import Footer from "./components/footer/Footer";
-import Testitmonial from "./components/testimonials/Testitmonial";
+import AboutUsPage from "./pages/AboutUsPage";
+import CouresPage from "./pages/CouresPage";
 
-function App() {
+const App = () => {
   return (
     <>
-      <Container>
-        <Header />
-      </Container>
-
-      <HeroSection />
-      <AboutUs />
-      <PopularCourses />
-      <RegistrationBanner />
-      <Testitmonial />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} /> {/* Add this line */}
+        <Route path="/about-us" element={<AboutUsPage />} />
+        <Route path="/courses" element={<CouresPage />} />
+      </Routes>
       <Footer />
     </>
   );
-}
+};
 
 export default App;
