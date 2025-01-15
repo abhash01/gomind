@@ -97,7 +97,12 @@ const CourseRegistrationForm = ({
                         value={option}
                         control={<Radio />}
                         label={option}
-                        sx={{ color: "var(--main-gray-color)" }}
+                        sx={{
+                          color: "var(--main-gray-color)",
+                          "& .MuiFormControlLabel-label": {
+                            fontSize: "0.9rem",
+                          },
+                        }}
                       />
                     ))}
                   </RadioGroup>

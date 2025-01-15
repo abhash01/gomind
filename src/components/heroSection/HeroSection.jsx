@@ -75,9 +75,11 @@ const HeroSection = () => {
               height: 400,
               position: "relative",
               display: "flex",
-              flexDirection: { xs: "column", md: "row" },
+              flexDirection: { xs: "column", sm: "row" },
               alignItems: "center",
+              gap: { xs: 4, sm: 0 },
               pl: 6,
+              py: { xs: 4, sm: 0 },
             }}
           >
             <Box position="absolute" top={0} left={0}>
@@ -85,12 +87,12 @@ const HeroSection = () => {
             </Box>
             <Box
               sx={{
-                flexBasis: "60%",
+                flex: "1 1 60%",
                 color: "var(--main-white-color)",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
-                pl: 6,
+                pl: { xs: 0, sm: 6 },
               }}
             >
               <Typography
@@ -108,7 +110,14 @@ const HeroSection = () => {
                 {slide.subtitle}
               </Typography>
             </Box>
-            <Box sx={{ flexBasis: "40%", px: 6, alignSelf: "flex-end" }}>
+            <Box
+              sx={{
+                flex: "1 1 40%",
+                px: 6,
+                alignSelf: "flex-end",
+                width: "100%",
+              }}
+            >
               <Box
                 sx={{
                   borderTopLeftRadius: 100,
