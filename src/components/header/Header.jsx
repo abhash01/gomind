@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -22,14 +21,8 @@ import {
   Instagram,
 } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import logo from "../../images/logo.png";
-
-const theme = createTheme({
-  typography: {
-    fontFamily: "Segoe UI, Arial, sans-serif",
-  },
-});
+import { useState } from "react";
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -41,7 +34,7 @@ const Header = () => {
   const navItems = ["Home", "About Us", "Courses", "Blog", "Contact Us"];
 
   return (
-    <ThemeProvider theme={theme}>
+    <Box>
       <Box
         sx={{
           margin: "0 100px",
@@ -157,15 +150,17 @@ const Header = () => {
                   to={`/${item.replace(/\s+/g, "-").toLowerCase()}`}
                   style={({ isActive }) => ({
                     textDecoration: "none",
-                    borderRadius: "20px",
-                    color: isActive ? "#fff" : "#632B90",
-                    backgroundColor: isActive ? "#632B90" : "transparent",
-                    fontWeight: "bold",
+                    borderRadius: "30px",
+                    border: isActive ? "none" : "1px solid #373737",
+                    color: isActive ? "#fff" : "#373737",
+                    backgroundColor: isActive
+                      ? "var(--main-blue-color)"
+                      : "transparent",
                     textTransform: "capitalize",
                     padding: "10px 20px",
                   })}
                 >
-                  {item}
+                  <Typography fontWeight={600}>{item}</Typography>
                 </NavLink>
               ))}
             </Box>
@@ -217,7 +212,7 @@ const Header = () => {
         {/* Spacer for fixed header */}
         <Box sx={{ marginTop: "160px" }} />
       </Box>
-    </ThemeProvider>
+    </Box>
   );
 };
 

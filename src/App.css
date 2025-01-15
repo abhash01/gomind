@@ -1,48 +1,43 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-html,
-body {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+:root {
+  --primary-color: #632b90;
+  --secondary-color: #000000;
+  --main-white-color: #ffffff;
+  --main-blue-color: #005691;
+  --secondary-blue-color: #00569199;
+  --main-gray-color: #636363;
+  --secondary-gray-color: #f6f8f9;
+  --main-red-color: #9e2424;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  overflow: scroll;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.carousel .control-dots .dot {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 0 !important;
 }
 
-.card {
-  padding: 2em;
+.heroSection {
+  position: relative;
+  padding-bottom: 40px;
 }
 
-.read-the-docs {
-  color: #888;
+.heroSection .carousel.carousel-slider {
+  overflow: visible;
+}
+
+.heroSection .carousel .control-dots {
+  bottom: -40px;
 }

@@ -1,88 +1,75 @@
 import { Box, Container, Typography } from "@mui/material";
-import footerLogo from "../../images/footerlogo.png"; // committ
+import Grid from "@mui/material/Grid2";
+import footerLogo from "../../images/footerLogo.png";
+
+const sectionLinks = [
+  {
+    title: "Section 1",
+    links: ["About Us", "Our Services", "Contact"],
+  },
+  {
+    title: "Section 2",
+    links: ["Disclaimer", "Testimonials", "Privacy Policy", "Terms of Service"],
+  },
+];
 
 const Footer = () => {
   return (
-    <Box bgcolor="rgba(99, 43, 144, 1)" py={4} mt="auto" color="#fff">
+    <Box bgcolor="var(--primary-color)" pt={4} mt="auto">
       <Container>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-          }}
-        >
-          {/* Left Section */}
-          <Box
-            sx={{
-              flex: "1 1 30%",
-              display: "flex",
-              flexDirection: "column",
-              gap: 4,
-            }}
+        <Grid container spacing={{ xs: 4, md: 0 }}>
+          <Grid
+            size={{ xs: 12, md: 5 }}
+            display="flex"
+            flexDirection="column"
+            alignItems={{ xs: "center", md: "flex-start" }}
+            textAlign={{ xs: "center", md: "left" }}
+            gap={4}
+            px={{ xs: 0, md: 7 }}
           >
             <img src={footerLogo} alt="footerLogo" width={256} height={116} />
             <Typography
               fontSize={14}
               color="customGray.main"
-              pr={10}
+              pr={{ xs: 0, md: 7 }}
+              px={{ xs: 7, md: 0 }}
               lineHeight={1.5}
               letterSpacing={1}
             >
               Welcome to groMind Academy, your gateway to a successful career.
               We are a passionate team of HR and Technology professionals
             </Typography>
-          </Box>
-
-          {/* Center Section */}
-          <Box
-            sx={{
-              flex: "1 1 30%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              pr: 10,
-            }}
-          >
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              <Typography fontSize={14} color="customGray.main">
-                About Us
-              </Typography>
-              <Typography fontSize={14} color="customGray.main">
-                Our Services
-              </Typography>
-              <Typography fontSize={14} color="customGray.main">
-                Contact
-              </Typography>
-            </Box>
-          </Box>
-
-          {/* Right Section */}
-          <Box
-            sx={{
-              flex: "1 1 30%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              <Typography fontSize={14} color="customGray.main">
-                Disclaimer
-              </Typography>
-              <Typography fontSize={14} color="customGray.main">
-                Testimonials
-              </Typography>
-              <Typography fontSize={14} color="customGray.main">
-                Private Policy
-              </Typography>
-              <Typography fontSize={14} color="customGray.main">
-                Terms of Service
-              </Typography>
-            </Box>
-          </Box>
-        </Box>
+          </Grid>
+          {sectionLinks.map((section, index) => (
+            <Grid
+              key={index}
+              size={{ xs: 12, sm: 6, md: index === 0 ? 4 : 3 }}
+              md={index === 0 ? 4 : 3}
+              display="flex"
+              flexDirection="column"
+              alignItems={{ xs: "center", md: "flex-start" }}
+              gap={2}
+              textAlign={{ xs: "center", md: "left" }}
+              px={{ xs: 0, md: 7 }}
+            >
+              {section.links.map((link, linkIndex) => (
+                <Typography
+                  key={linkIndex}
+                  fontSize={14}
+                  lineHeight={1.5}
+                  letterSpacing={1}
+                  color="customGray.main"
+                >
+                  {link}
+                </Typography>
+              ))}
+            </Grid>
+          ))}
+        </Grid>
       </Container>
+      <Typography color="customGray.main" textAlign="center" mt={4}>
+        © 2024 GroMind Digital Academy.
+      </Typography>
     </Box>
   );
 };

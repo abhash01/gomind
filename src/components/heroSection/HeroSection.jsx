@@ -1,6 +1,7 @@
-import React, { useState } from "react";
 import bgImg from "../../images/bgImg.png";
-import bgSlide from "../../images/bgsidedesign.png";
+import sideImg from "../../images/bgsidedesign.png";
+import { Box, Typography } from "@mui/material";
+import { Carousel } from "react-responsive-carousel";
 
 const HeroSection = () => {
   const slides = [
@@ -21,178 +22,110 @@ const HeroSection = () => {
     },
   ];
 
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const customIndicator = (onClick, isSelected, label) => {
+    const style = isSelected
+      ? {
+          backgroundColor: "var(--primary-color)",
+          border: "1px solid var(--primary-color)",
+          cursor: "pointer",
+          width: "24px",
+          height: "14px",
+          borderRadius: "10px",
+        }
+      : {
+          backgroundColor: "var(--main-white-color)",
+          border: "1px solid var(--primary-color)",
+          cursor: "pointer",
+          width: "14px",
+          height: "14px",
+          borderRadius: "50%",
+        };
 
-  const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide(
-      (prevSlide) => (prevSlide - 1 + slides.length) % slides.length
+    return (
+      <li
+        style={{
+          ...style,
+          margin: "0 2px",
+          display: "inline-block",
+        }}
+        onClick={onClick}
+        aria-label={label}
+      ></li>
     );
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100vh",
-        maxHeight: "648px", // Set the max height to 648px
-        overflow: "hidden",
-        position: "relative",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#f5f5f5",
-      }}
-    >
-      {/* Slider Container */}
-      <div
-        style={{
-          display: "flex",
-          transform: `translateX(-${currentSlide * 100}%)`,
-          transition: "transform 0.6s ease-in-out",
-          width: `${slides.length * 100}%`,
-          height: "100%",
-        }}
+    <Box className="heroSection" my={2}>
+      <Carousel
+        renderIndicator={customIndicator}
+        autoPlay={false}
+        infiniteLoop
+        showArrows={false}
+        showStatus={false}
+        showThumbs={false}
+        emulateTouch
+        interval={5000}
+        transitionTime={500}
       >
         {slides.map((slide, index) => (
-          <div
+          <Box
             key={index}
-            style={{
-              flex: "0 0 100%",
+            sx={{
+              bgcolor: "var(--primary-color)",
+              height: 400,
+              position: "relative",
               display: "flex",
-              height: "100%",
-              backgroundColor: "#632b90", // Background color applied to the whole slide
-              backgroundImage: `url(${bgSlide})`,
-              backgroundSize: "auto 100%", // Ensures it stretches vertically
-              backgroundPosition: "left top",
-              backgroundRepeat: "no-repeat",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              pl: 6,
             }}
           >
-            {/* Text Section */}
-            <div
-              style={{
-                flex: "0 0 60%",
+            <Box position="absolute" top={0} left={0}>
+              <img src={sideImg} alt="design" style={{ height: 400 }} />
+            </Box>
+            <Box
+              sx={{
+                flexBasis: "60%",
+                color: "var(--main-white-color)",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "center",
-                padding: "20px",
-                color: "white",
-                position: "relative",
-                left: "7%",
+                alignItems: "flex-start",
+                pl: 6,
               }}
             >
-              <h1
-                style={{
-                  fontSize: "3rem",
-                  fontWeight: "bold",
-                  marginBottom: "20px",
-                }}
+              <Typography
+                fontSize={{ xs: 24, sm: 32, md: 40 }}
+                fontWeight={700}
+                lineHeight={1.5}
               >
                 {slide.title}
-              </h1>
-              <p style={{ fontSize: "1.5rem" }}>{slide.subtitle}</p>
-            </div>
-
-            {/* Image Section */}
-            <div
-              style={{
-                flex: "0 0 40%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#632b90",
-                position: "relative",
-                right: "10%",
-                top: "0%",
-              }}
-            >
-              <img
-                src={slide.image}
-                alt={slide.title}
-                style={{
+              </Typography>
+              <Typography
+                fontSize={{ xs: 14, sm: 24, md: 30 }}
+                fontWeight={400}
+                lineHeight={1.5}
+              >
+                {slide.subtitle}
+              </Typography>
+            </Box>
+            <Box sx={{ flexBasis: "40%", px: 6, alignSelf: "flex-end" }}>
+              <Box
+                sx={{
+                  borderTopLeftRadius: 100,
+                  height: 300,
                   width: "100%",
-                  height: "auto", // Ensure height adjusts to the container
-                  maxWidth: "500px",
-                  borderRadius: "15px",
-                  objectFit: "cover", // This ensures the image covers the container while maintaining its aspect ratio
+                  backgroundImage: `url(${slide.image})`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                  backgroundPositionY: "10%",
+                  backgroundSize: "cover",
                 }}
-              />
-            </div>
-          </div>
+              ></Box>
+            </Box>
+          </Box>
         ))}
-      </div>
-
-      {/* Navigation Buttons */}
-      <button
-        onClick={prevSlide}
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "10px",
-          transform: "translateY(-50%)",
-          background: "rgba(255, 255, 255, 0.8)",
-          border: "none",
-          borderRadius: "50%",
-          padding: "10px 15px",
-          cursor: "pointer",
-          boxShadow: "0 2px 5px rgba(0, 0, 0, 0.3)",
-          zIndex: 1,
-        }}
-        aria-label="Previous Slide"
-      >
-        &#8249;
-      </button>
-      <button
-        onClick={nextSlide}
-        style={{
-          position: "absolute",
-          top: "50%",
-          right: "10px",
-          transform: "translateY(-50%)",
-          background: "rgba(255, 255, 255, 0.8)",
-          border: "none",
-          borderRadius: "50%",
-          padding: "10px 15px",
-          cursor: "pointer",
-          boxShadow: "0 2px 5px rgba(0, 0, 0, 0.3)",
-          zIndex: 1,
-        }}
-        aria-label="Next Slide"
-      >
-        &#8250;
-      </button>
-
-      {/* Navigation Dots */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "20px",
-          width: "100%",
-          textAlign: "center",
-        }}
-      >
-        {slides.map((_, index) => (
-          <span
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            style={{
-              display: "inline-block",
-              width: "12px",
-              height: "12px",
-              margin: "0 5px",
-              background: currentSlide === index ? "white" : "gray",
-              borderRadius: "50%",
-              cursor: "pointer",
-              transition: "background 0.3s ease",
-            }}
-            aria-label={`Go to slide ${index + 1}`}
-          ></span>
-        ))}
-      </div>
-    </div>
+      </Carousel>
+    </Box>
   );
 };
 

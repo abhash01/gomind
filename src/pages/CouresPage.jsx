@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./CouresPage.css";
 import { Box, Divider, Container, Typography } from "@mui/material";
 
@@ -71,7 +71,7 @@ const CouresPage = () => {
     );
   };
   return (
-    <div>
+    <Box>
       <Container>
         <Box textAlign="left">
           <Typography
@@ -93,13 +93,10 @@ const CouresPage = () => {
             Online & Offline
           </Typography>
         </Box>
-        {/* <div className="headers">
-          <h1>What We Offer?</h1>
-        </div> */}
-        <div className="tabs"> {renderTabs()} </div>
-        <div className="content"> {renderContent()} </div>
+        <Box className="tabs"> {renderTabs()} </Box>
+        <Box className="content"> {renderContent()} </Box>
       </Container>
-    </div>
+    </Box>
   );
 };
 

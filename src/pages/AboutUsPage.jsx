@@ -1,12 +1,15 @@
-import React from "react";
 import AboutUs from "../components/aboutUs/AboutUs";
+import { Box } from "@mui/material";
+import RegistrationBanner from "../components/registrationBanner/RegistrationBanner";
 
 const AboutUsPage = () => {
   return (
-    <div>
-      <AboutUs />
-    </div>
+    <Box mt={28}>
+      <AboutUs isFullPage={true} />
+      <RegistrationBanner />
+    </Box>
   );
 };
 
 export default AboutUsPage;
+
